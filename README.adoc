@@ -1,0 +1,67 @@
+# python-project-example
+= Example of python project with virtual environment
+
+// settings:
+:idprefix:
+:idseparator: -
+:source-language: ruby
+:language: {source-language}
+ifndef::env-github[:icons: font]
+ifdef::env-github[]
+:status:
+:outfilesuffix: .adoc
+endif::[]
+// Variables:
+:venv_name: .venv
+// URLs:
+:url-org: https://github.com/johncolvin-og
+:url-repo: {url-org}/python-project-example
+:url-python-docs: https://docs.python.org/3
+:url-venv-docs: {url-python-docs}/library/venv.html
+
+{url-repo}[python-project-example] Example of python project with virtual environment
+
+.Key documentation
+[.compact]
+* {url-python-docs}[Python Docs]
+* {url-venv-docs}[Venv Docs]
+
+.Steps
+. Open shell and *cd* to the root directory of your project
+. Create the virtual environment (the canonical name is _{venv_name}_)
+[source,bash]
+----
+python -m venv .venv
+----
+[start=3]
+. Activate the virtual environment
+[source,bash]
+----
+source .venv/bin/activate
+----
+[start=4]
+. Use *pip install* to install packages in your virtual environment
+  * Most shells will display the name of your active environment in the prompt, but if you are unsure, check the python path (it should be inside the _{venv_name}_ dir)
+[source,bash]
+----
+which python
+----
+[start=5]
+. Instead of adding the packages themselves to the repo, add a file with list of package names and versions.  That way the virtual environment can be generated in a single command.  The canonical name for this file is _requirements.txt_
+  * Remember to add _{venv_name}_ to _.gitignore if it isn't already there
+  * To generate _requirements.txt_
+[source,bash]
+----
+pip freeze > requirements.txt
+----
+  * To create the virtual environment from scratch using _requirements.txt_
+[source,bash]
+----
+pip install -r requirements.txt
+----
+[start=6]
+. Create a directory for your actual python code.  The canonical name is _src_ (place it in just inside of the project root).
+[source,bash]
+----
+mkdir src
+----
